@@ -8,14 +8,8 @@
 
 #Unity Ignore File
 
-*.sln
-*.csproj
-.DS_Store
-Library
-Library/*
-*.userprefs
+
 Temp
-*.pidb
 Build
 
 # Build results

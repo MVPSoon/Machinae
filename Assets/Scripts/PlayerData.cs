@@ -81,7 +81,6 @@ public class PlayerData : MonoBehaviour
     public void SetLevel (int lvl)
     {
         level = lvl;
-        Debug.Log("this.level : " + this.level);
     }
     public int GetVie()
     {

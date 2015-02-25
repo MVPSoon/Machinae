@@ -8,12 +8,7 @@ public class Player : MonoBehaviour {
     public GameObject cam;
 
     private float deadzone = 0.25F;
-    //private Vector3 moveDirection = Vector3.zero;
-
-    void Awake()
-    {
-        //moveDirection = transform.TransformDirection(Vector3.forward);
-    }
+    
     void Update()
     {
         Transform camTransform = cam.transform;

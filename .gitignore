@@ -8,10 +8,11 @@
 
 #Unity Ignore File
 
-Assets/Assets/Standard Assets/*
-Library/metadata/*
-Temp
-Build
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+
 
 # Build results
 

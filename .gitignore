@@ -9,6 +9,7 @@
 #Unity Ignore File
 
 Assets/Assets/Standard Assets/*
+Library/metadata/*
 Temp
 Build
 

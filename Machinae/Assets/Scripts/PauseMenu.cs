@@ -38,14 +38,14 @@ public class PauseMenu : MonoBehaviour
             {
                 paused = true;
                 Time.timeScale = 0;
-                CameraMovement.enableMovement = false;
+                MouseOrbit.enableMovement = false;
                 menu.SetActive(true);
             }
             else if (Input.GetButtonUp("Pause") && paused == true)
             {
                 paused = false;
                 Time.timeScale = 1;
-                CameraMovement.enableMovement = true;
+                MouseOrbit.enableMovement = true;
                 menu.SetActive(false);
             }
 

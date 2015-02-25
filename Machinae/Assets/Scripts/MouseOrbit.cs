@@ -16,6 +16,8 @@ public class MouseOrbit : MonoBehaviour {
     private float x = 0.0F, y = 0.0F;
     private float deadzone = 0.25F; //Minimum position value that the joytstick must have
 
+    internal static bool enableMovement = true;
+
 	void Start () {
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
@@ -27,30 +29,32 @@ public class MouseOrbit : MonoBehaviour {
 	}
 	
 	void LateUpdate () {
-        if (_target)
+        if (enableMovement)
         {
-            Vector2 stickInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            if (_target)
+            {
+                Vector2 stickInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-            /*JOYSTICK SECTION*/
-            /*We test the magnitude of the stick to correct the drift which could occure and make the camera move on her own even if we don't press any direction*/
-            if (stickInput.magnitude < deadzone)
-                stickInput = Vector2.zero;
-            else
-                stickInput = stickInput.normalized * ((stickInput.magnitude - deadzone) / (1 - deadzone));
-            /*END JOYSTICK SECTION*/
-            
-            x += stickInput.x * xSpeed * 0.02F;           
-            y -= stickInput.y * ySpeed * 0.02F;
+                /*JOYSTICK SECTION*/
+                /*We test the magnitude of the stick to correct the drift which could occure and make the camera move on her own even if we don't press any direction*/
+                if (stickInput.magnitude < deadzone)
+                    stickInput = Vector2.zero;
+                else
+                    stickInput = stickInput.normalized * ((stickInput.magnitude - deadzone) / (1 - deadzone));
+                /*END JOYSTICK SECTION*/
 
-            y = ClampAngle(y, y_minLimit, y_maxLimit);
+                x += stickInput.x * xSpeed * 0.02F;
+                y -= stickInput.y * ySpeed * 0.02F;
 
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
-            Vector3 position = rotation * new Vector3(0.0F, 0.0F, -distance) + _target.position;
+                y = ClampAngle(y, y_minLimit, y_maxLimit);
 
-            transform.rotation = rotation;
-            transform.position = position;
+                Quaternion rotation = Quaternion.Euler(y, x, 0);
+                Vector3 position = rotation * new Vector3(0.0F, 0.0F, -distance) + _target.position;
+
+                transform.rotation = rotation;
+                transform.position = position;
+            }
         }
-
 	}
 
     // Force an angle to be between -360° and 360°

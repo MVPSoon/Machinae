@@ -8,12 +8,10 @@
 
 #Unity Ignore File
 
-$PRODIR
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
-Machinae/Library/*
 
 # Build results
 

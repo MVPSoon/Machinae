@@ -164,3 +164,4 @@ $RECYCLE.BIN/
 UnityVS.Machinae.CSharp.csproj
 *.csproj
 *.unity
+Assets/Scenes/main_scene.unity

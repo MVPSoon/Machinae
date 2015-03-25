@@ -1,38 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Spawn3 : MonoBehaviour {
-
-    public GameObject mobs; // Ennemi à invoquer 
-    public float spawnTime = 2f; // Temps entre chaque instance
+public class spawn1: MonoBehaviour
+{
+    public GameObject ennemi; // mobs à invoquer
     public Transform spawnPoint; // Point autour duquel les ennemies vont etre instanciés
-    public int range; // Rayon d'instance autour du point de spawn
+    private int nbEnnemiMax=20; // nombre de mobs à invoquer par vagues
+    private static int nbEnnemi=0; // nombre d'ennemis actuel
+    public float spawnWait; // temps entre chaques instanciations
+    public float startWait;
+    public float waveWait; // temps entre chaques vagues
+    public int range; // Rayon d'instanciation autour du point de spawn
 
+    private bool _gameOver = false;
 
-    // Use this for initialization
     void Start()
     {
-        InvokeRepeating("Spawn", spawnTime, spawnTime); // répétition du spawn d'ennemis
+        
+        StartCoroutine(SpawnWaves());
     }
 
-    void Spawn()
+    IEnumerator SpawnWaves()
     {
-
         float x;
         float z;
+        yield return new WaitForSeconds(startWait);
+        while (true)
+        {
+            for (int i = 0; i < nbEnnemiMax; i++)
+            {
 
-        x = spawnPoint.position.x + Random.Range(-range, range);
-        z = spawnPoint.position.z + Random.Range(-range, range);
+                x = spawnPoint.position.x + UnityEngine.Random.Range(-range, range);
+                z = spawnPoint.position.z + UnityEngine.Random.Range(-range, range);
 
 
-        Instantiate(mobs, new Vector3(x,spawnPoint.position.y,z), spawnPoint.rotation); // Création d'un ennemi
+                Instantiate(ennemi, new Vector3(x, spawnPoint.position.y, z), spawnPoint.rotation); // Création d'un ennemi
+                nbEnnemi += 1;
+                Debug.Log(nbEnnemi);
+                yield return new WaitForSeconds(spawnWait);
+            }
+            yield return new WaitForSeconds(waveWait);
+        }
+
+
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public void GameOver()
     {
-
+        _gameOver = true;
     }
-	
 }

@@ -163,3 +163,4 @@ $RECYCLE.BIN/
 .DS_Store
 UnityVS.Machinae.CSharp.csproj
 *.csproj
+*.unity
